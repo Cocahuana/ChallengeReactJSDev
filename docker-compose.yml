@@ -1,15 +1,18 @@
-version: "2"
+version: "3.8"
 
 services:
-  app:
+  app:    
     restart: always
-    build: ./frontend
+    build:
+      context: ./frontend
     container_name: node-app
-    command: ["npm", "start"]
     volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
-    expose:
-      - "3000"
+      - ./frontend:/usr/src
+      - /usr/src/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+      - HOST=0.0.0.0
     stdin_open: true
     tty: true
