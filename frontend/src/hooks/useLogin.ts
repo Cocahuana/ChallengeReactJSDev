@@ -7,6 +7,13 @@ type LoginParams = {
 	password: string | undefined;
 };
 
+const calcExpirationTokenInHours = (hours: number) => {
+	const seconds = 60;
+	const minutes = 60;
+	const time = hours * minutes * seconds;
+	return time;
+};
+
 export const useLogin = () => {
 	const login = async (credentials: LoginParams): Promise<User> => {
 		const LoginURL = "/api/v1/login/";
@@ -18,6 +25,16 @@ export const useLogin = () => {
 			if (!response.data) {
 				throw new Error("Failed to login");
 			}
+			const { token } = response.data;
+			localStorage.setItem("session:", token);
+			const timeForExpiration = calcExpirationTokenInHours(24);
+			const expirationDate = new Date(timeForExpiration);
+
+			// Almacenar la fecha de vencimiento en localStorage
+			localStorage.setItem(
+				"tokenExpiration",
+				expirationDate.getTime().toString()
+			);
 			return response.data;
 		} catch (error: any) {
 			throw new Error("Failed to login: " + error.message);

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 import { User } from "../interfaces/User";
 
@@ -35,10 +35,27 @@ export const AuthProvider = (props: AuthProviderProps) => {
 	};
 
 	const logoutUser = () => {
+		localStorage.removeItem("token");
+		localStorage.removeItem("tokenExpiration");
 		setUser(null);
 		setError(null);
 	};
 
+	const getTokenExpiration = () => {
+		const expiration = localStorage.getItem("tokenExpiration");
+		if (!expiration) return null;
+		const expirationDate = parseInt(expiration);
+		return new Date(expirationDate);
+	};
+
+	const isTokenExpired = () => {
+		const expirationDate = getTokenExpiration();
+		if (!expirationDate) return true; // If there is no expiration date, consider the token to have expired
+		return expirationDate < new Date();
+	};
+	const isLoggedIn = () => {
+		return !isTokenExpired();
+	};
 	return (
 		<AuthContext.Provider value={{ user, error, loginUser, logoutUser }}>
 			{children}
