@@ -1,14 +1,7 @@
 import Home from "./pages/Home";
-import Julian from "./Julian";
-
+import { Text, Button, Box, Grid } from "@chakra-ui/react";
 function App() {
-	return (
-		<div>
-			Mi mensaje:
-			<Home></Home>
-			<Julian />
-		</div>
-	);
+	return <Box></Box>;
 }
 
 export default App;
