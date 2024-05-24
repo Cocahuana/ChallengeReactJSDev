@@ -27,8 +27,11 @@ export const useLogin = () => {
 			}
 			const { token } = response.data;
 			localStorage.setItem("session:", token);
-			const timeForExpiration = calcExpirationTokenInHours(24);
-			const expirationDate = new Date(timeForExpiration);
+			const expirationTimeInSeconds = calcExpirationTokenInHours(24);
+			const expirationDate = new Date();
+			expirationDate.setTime(
+				expirationDate.getTime() + expirationTimeInSeconds * 1000
+			);
 
 			// Almacenar la fecha de vencimiento en localStorage
 			localStorage.setItem(

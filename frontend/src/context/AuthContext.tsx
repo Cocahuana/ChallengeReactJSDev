@@ -36,7 +36,7 @@ export const AuthProvider = (props: AuthProviderProps) => {
 	};
 
 	const logoutUser = () => {
-		localStorage.removeItem("token");
+		localStorage.removeItem("session");
 		localStorage.removeItem("tokenExpiration");
 		setUser(null);
 		setError(null);
@@ -55,6 +55,7 @@ export const AuthProvider = (props: AuthProviderProps) => {
 		return expirationDate < new Date();
 	};
 	const isLoggedIn = () => {
+		console.log("istokenExpired: ", isTokenExpired());
 		return !isTokenExpired();
 	};
 	return (
