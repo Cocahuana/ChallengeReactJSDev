@@ -15,7 +15,7 @@ const calcExpirationTokenInHours = (hours: number) => {
 
 export const useLogin = () => {
 	const login = async (credentials: LoginParams): Promise<User> => {
-		const LoginURL = "/api/v1/login/";
+		const LoginURL = "/login/";
 		try {
 			const response: AxiosResponse<User> = await axiosInstance.post(
 				LoginURL,
@@ -25,7 +25,7 @@ export const useLogin = () => {
 				throw new Error("Failed to login");
 			}
 			const { token } = response.data;
-			localStorage.setItem("session:", token);
+			localStorage.setItem("session", token);
 			const expirationTimeInSeconds = calcExpirationTokenInHours(24);
 			const expirationDate = new Date();
 			expirationDate.setTime(
