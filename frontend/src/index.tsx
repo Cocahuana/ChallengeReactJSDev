@@ -9,7 +9,7 @@ import {
 	extendBaseTheme,
 	theme as chakraTheme,
 } from "@chakra-ui/react";
-
+import { AuthProvider } from "./context/AuthContext";
 const { Button } = chakraTheme.components;
 
 const theme = extendBaseTheme({
@@ -21,9 +21,11 @@ const container = document.getElementById("root");
 const root = createRoot(container!); // createRoot(container!) if you use TypeScript
 root.render(
 	<React.StrictMode>
-		<ChakraBaseProvider theme={theme}>
-			<App />
-		</ChakraBaseProvider>
+		<AuthProvider>
+			<ChakraBaseProvider theme={theme}>
+				<App />
+			</ChakraBaseProvider>
+		</AuthProvider>
 	</React.StrictMode>
 );
 serviceWorker.unregister();
