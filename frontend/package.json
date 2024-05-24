@@ -29,9 +29,6 @@
 		"eject": "react-scripts eject",
 		"start:server": "node server"
 	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
 	"browserslist": [
 		">0.2%",
 		"not dead",
