@@ -49,7 +49,7 @@ function LoginForm() {
 				alignItems={"center"}
 			>
 				<Box
-					w={{ base: "80%" }}
+					w={{ base: "80%", md: "50%", lg: "40%", xl: "30%" }}
 					h={{ base: "60vh" }}
 					borderWidth={1}
 					borderRadius='lg'
@@ -65,28 +65,44 @@ function LoginForm() {
 							h='100%'
 							justify={"center"}
 							alignItems={"center"}
-							gap={4}
-							p={{ base: "4" }}
+							gap={{ base: 4, md: 6, xl: 8 }}
+							p={{ base: "4", md: "8" }}
 						>
 							<Text
-								fontSize={{ base: "x-large" }}
+								fontSize={{
+									base: "x-large",
+									md: "xx-large",
+									xl: "2.5rem",
+								}}
 								fontWeight={"bold"}
 								textAlign={"center"}
 							>
 								Welcome to Inceptia!
 							</Text>
-							<FormControl isRequired w={{ base: "100%" }}>
-								<FormLabel>Email</FormLabel>
+							<FormControl
+								isRequired
+								w={{ base: "100%", lg: "80%" }}
+							>
+								<FormLabel fontSize={{ lg: "18px" }}>
+									Email
+								</FormLabel>
 								<Input
 									w={{ base: "100%" }}
+									fontSize={{ lg: "1rem" }}
 									type='email'
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
 									placeholder='great.developer@inceptia.com'
 								/>
 							</FormControl>
-							<FormControl isRequired w={{ base: "100%" }}>
-								<FormLabel>Password</FormLabel>
+							<FormControl
+								isRequired
+								w={{ base: "100%", lg: "80%" }}
+								fontSize={{ lg: "1rem" }}
+							>
+								<FormLabel fontSize={{ lg: "18px" }}>
+									Password
+								</FormLabel>
 								<InputGroup>
 									<Input
 										w={{ base: "100%" }}
