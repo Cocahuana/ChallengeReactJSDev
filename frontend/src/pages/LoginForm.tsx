@@ -11,8 +11,9 @@ import {
 	Text,
 	InputGroup,
 	InputRightElement,
+	useToast,
 } from "@chakra-ui/react";
-
+import { useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 function LoginForm() {
 	const [email, setEmail] = useState("");
@@ -20,15 +21,25 @@ function LoginForm() {
 	const [loading, setLoading] = useState(false);
 	const { loginUser, error } = useAuth();
 	const [showPassword, setShowPassword] = useState(false);
-
+	const toast = useToast();
+	const navigate = useNavigate();
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		setLoading(true);
 		const response: User | null = await loginUser(email, password);
 		setLoading(false);
-		console.log("Succesfully logged in: ", response);
+		if (response) {
+			toast({
+				title: "Login successful! You will be redirected...",
+				status: "success",
+				duration: 2000,
+				isClosable: true,
+				onCloseComplete: () => {
+					navigate("/");
+				},
+			});
+		}
 	};
-	console.log("auth0 log error:", error);
 
 	return (
 		<Box minH={{ base: "100vh" }} bg='gray.50'>
