@@ -29,7 +29,7 @@ export const AuthProvider = (props: AuthProviderProps) => {
 			setError(null);
 			return userData;
 		} catch (err: any) {
-			setError("ERROR - LOGIN: " + err.message);
+			setError(err.message);
 			setUser(null);
 			return null;
 		}

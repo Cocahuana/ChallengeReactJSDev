@@ -39,7 +39,11 @@ export const useLogin = () => {
 			);
 			return response.data;
 		} catch (error: any) {
-			throw new Error("Failed to login: " + error.message);
+			console.log(
+				"Error - useLogin HOOK:",
+				error.response.data.non_field_errors
+			);
+			throw new Error(error.response.data.non_field_errors);
 		}
 	};
 
