@@ -1,7 +1,6 @@
 import { AxiosResponse } from "axios";
 import axiosInstance from "../utils/axiosInstance";
 import { User } from "../interfaces/User";
-
 type LoginParams = {
 	email: string | undefined;
 	password: string | undefined;

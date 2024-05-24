@@ -29,7 +29,7 @@ export const AuthProvider = (props: AuthProviderProps) => {
 			setError(null);
 			return userData;
 		} catch (err: any) {
-			setError("ERROR - LOGIN - POST: " + err.message);
+			setError("ERROR - LOGIN: " + err.message);
 			setUser(null);
 			return null;
 		}
@@ -55,7 +55,6 @@ export const AuthProvider = (props: AuthProviderProps) => {
 		return expirationDate < new Date();
 	};
 	const isLoggedIn = () => {
-		console.log("istokenExpired: ", isTokenExpired());
 		return !isTokenExpired();
 	};
 	return (
