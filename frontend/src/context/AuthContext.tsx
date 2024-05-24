@@ -7,6 +7,7 @@ interface AuthContextProps {
 	error: string | null;
 	loginUser: (email: string, password: string) => Promise<User | null>;
 	logoutUser: () => void;
+	isLoggedIn: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -57,7 +58,9 @@ export const AuthProvider = (props: AuthProviderProps) => {
 		return !isTokenExpired();
 	};
 	return (
-		<AuthContext.Provider value={{ user, error, loginUser, logoutUser }}>
+		<AuthContext.Provider
+			value={{ user, error, loginUser, logoutUser, isLoggedIn }}
+		>
 			{children}
 		</AuthContext.Provider>
 	);
