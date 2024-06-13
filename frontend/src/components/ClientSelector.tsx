@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Box, Button } from "@chakra-ui/react";
 import { Client } from "../interfaces/Client";
 import { useClients } from "../hooks/useClients";
@@ -13,6 +12,7 @@ const ClientSelector: React.FC<ClientSelectorProps> = ({
 	const handleChange = (clientId: number) => {
 		setSelectedClient(clientId);
 	};
+	console.log("clients", clients);
 	return (
 		<Box>
 			{clients.map((client: Client) => (
